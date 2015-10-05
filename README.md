@@ -10,7 +10,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist matperez/yii2- "~1.0"
+php composer.phar require --prefer-dist matperez/yii2unisender "~1.0"
 ```
 
 or add
