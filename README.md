@@ -29,6 +29,7 @@ Once the extension is installed, simply use it in your code by  :
 
 
 ```php
+
     'components' => [
       'unisender' => [
         'class' => \matperez\yii2unisender\UniSender::class,
@@ -36,7 +37,19 @@ Once the extension is installed, simply use it in your code by  :
           'apiKey' => '...'
         ],
     ]
+    
 ```
+
+You can also use it with the dependency container:
+
+```php
+
+Yii::$container->setSingleton(\matperez\yii2unisender\UniSenderInterface::class, function() {
+    return Yii::$app->unisender;
+});
+
+```
+
 
 Tests
 -----
