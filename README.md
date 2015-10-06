@@ -44,12 +44,52 @@ You can also use it with the dependency container:
 
 ```php
 
-Yii::$container->setSingleton(\matperez\yii2unisender\UniSenderInterface::class, function() {
-    return Yii::$app->unisender;
-});
+    Yii::$container->setSingleton(\matperez\yii2unisender\UniSenderInterface::class, function() {
+        return Yii::$app->unisender;
+    });
+  
+```
+
+For now it's supports the following operations:
+
+Get a user fields array:
+
+```php
+
+    $fields = $unisender->getFields()->getResult;
 
 ```
 
+Get an available subscriptions list:
+
+```php
+
+    $list = $unisender->getList()->getResult();
+  
+```
+
+Create a new subscription:
+
+```php
+
+    $sub = new Subscriber($name, $email, $phone);
+    $sub->addTag('something');
+    $response = $unisender->subscribe($sub, [12315, 14333]);
+    if ($response->isSuccess()) {
+      $personId = $response->getResult()['person_id'];
+      // .... do something with the person id
+    }
+  
+```
+
+Get the "native" API instance:
+
+```php
+
+    $api = $unisender->getApi();
+    $api->doSomethingViaMagicCall();
+  
+```
 
 Tests
 -----
