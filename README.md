@@ -64,7 +64,7 @@ Get an available subscriptions list:
 
 ```php
 
-    $list = $unisender->getList()->getResult();
+    $list = $unisender->getLists()->getResult();
   
 ```
 
