@@ -155,7 +155,7 @@ class Subscriber
     public function getRequestIp()
     {
         if (!$this->requestIp) {
-            $this->requestIp = \Yii::$app->request->userIP;
+            $this->requestIp = \Yii::$app->request->hasProperty('userIp') ? \Yii::$app->request->userIP : null;
         }
         return $this->requestIp;
     }
