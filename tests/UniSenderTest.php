@@ -25,6 +25,29 @@ class UniSenderTest extends TestCase
         self::assertInstanceOf(UniSenderWrapper::class, $model->getApi());
     }
 
+    public function it_can_unsubsribe_clients()
+    {
+        $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
+
+        $subscriber = new Subscriber($this->faker->name, $this->faker->email, $this->faker->phoneNumber);
+        $subscriber->setTags('a,b');
+
+        $data = [
+            'client_type' => 'email',
+            'client' => $subscriber->getEmail(),
+        ];
+
+        $expectation = [
+            'result' => '',
+        ];
+
+        $this->api->shouldReceive('subscribe')->with(\Mockery::subset($data))->andReturn($expectation);
+
+        $response = $this->model->unsubscribe($subscriber, [1111, 2222]);
+
+        self::assertEquals($expectation, $response->getApiResponse());
+    }
+
     /**
      * @test
      */

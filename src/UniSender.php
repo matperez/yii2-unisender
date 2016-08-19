@@ -38,6 +38,21 @@ class UniSender extends Component implements UniSenderInterface
     }
 
     /**
+     * @param Subscriber $subscriber
+     * @param array $listIds
+     * @return Response
+     */
+    public function unsubscribe(Subscriber $subscriber, array $listIds)
+    {
+        $response = $this->getApi()->unsubscribe([
+            'contact_type' => 'email',
+            'contact' => $subscriber->getEmail(),
+            'list_ids' => implode(',', $listIds),
+        ]);
+        return new Response($response);
+    }
+
+    /**
      * Subscribe user to a lists
      * @param Subscriber $subscriber
      * @param array $listIds

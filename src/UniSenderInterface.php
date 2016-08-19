@@ -34,6 +34,12 @@ interface UniSenderInterface
     public function subscribe(Subscriber $subscriber, array $listIds);
 
     /**
+     * @param Subscriber $subscriber
+     * @param array $listIds
+     */
+    public function unsubscribe(Subscriber $subscriber, array $listIds);
+
+    /**
      * @return Response
      * @throws \Exception
      */
