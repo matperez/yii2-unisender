@@ -36,6 +36,7 @@ interface UniSenderInterface
     /**
      * @param Subscriber $subscriber
      * @param array $listIds
+     * @return Response
      */
     public function unsubscribe(Subscriber $subscriber, array $listIds);
 
